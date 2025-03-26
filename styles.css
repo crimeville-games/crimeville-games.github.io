@@ -1,54 +1,155 @@
+/* General Body Styling */
 body {
-  margin: 0px;
-  background-color: #b9c1c7;
-
-.title {
-  font-family: Sans-Serif;
-  padding-left: 20px;
-  color: lime;
-  text-align: center;
-  font-size: 50px;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+   margin: 0;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Clean sans-serif font */
+   background: linear-gradient(to bottom, #00aaff, #1e7acc); /* Bold gradient background */
+   color: #333;
+   padding: 0;
+   box-sizing: border-box;
 }
 
+/* Header Styling */
 .header {
-  width: 100%;
-  height: 80px;
-  background-color: #092163;
+   width: 100%;
+   height: 120px;
+   background: rgba(255, 255, 255, 0.8); /* Semi-transparent header with a glossy look */
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* Bold shadow for depth */
+   text-align: center;
+   padding-top: 20px;
+   border-bottom: 3px solid #ffffff; /* Thick border for a bold, 2000s-style header */
+   border-radius: 0; /* Sharp corners to keep it old-school */
 }
 
+/* Main Title */
+h1.title {
+   font-size: 50px;
+   color: #00ff00; /* Green text color */
+   margin: 0;
+   text-shadow:
+      2px 2px 0 #000,  /* Outline effect */
+      -2px -2px 0 #000, /* Outline effect */
+      2px -2px 0 #000,  /* Outline effect */
+      -2px 2px 0 #000;  /* Outline effect */
+}
+
+/* Subtitle */
 h2 {
-  color: white;
-  font-family: Sans-Serif;
-  text-align: center;
-  padding-bottom: 20px;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+   color: #f0f0f0;
+   font-size: 22px;
+   font-weight: normal;
+   margin-top: 10px;
+   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
 }
 
+/* Banner Image */
 .banner {
-  width: 100%;
-  height: auto;
+   width: 100%;
+   height: auto;
+   margin-top: 20px;
+   border: 5px solid #ffffff; /* Bold border to keep the 2000s aesthetic */
+   box-shadow: 0 8px 16px rgba(0, 0, 0, 1); /* Large shadow for depth */
+   border-radius: 0; /* Sharp corners for a more "boxy" look */
 }
 
+/* Game Row Styling */
 .game-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+   padding: 30px;
+   margin: 0;
+   background: rgba(255, 255, 255, 0.4); /* Frosted glass background */
+   border-radius: 0; /* Sharp corners */
+   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); /* Strong shadow for a bold, deep look */
 }
 
+/* Game Block Styling */
 .game {
-  text-align: center;
-  margin: 10px;
+   background: rgba(255, 255, 255, 0.9); /* Semi-transparent block */
+   padding: 15px;
+   width: 180px;
+   text-align: center;
+   margin: 20px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Standard shadow for depth */
+   border-radius: 0; /* Sharp corners */
+   transition: all 0.3s ease; /* Smooth hover transition */
 }
 
+/* Hover Effect for Game Blocks */
+.game:hover {
+   transform: scale(1.05); /* Slight zoom effect on hover */
+   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+/* Circular Icons for Games */
 .game img {
-  width: 145px;
-  height: 145px;
-  object-fit: cover;
+   width: 120px; /* Larger icons for prominence */
+   height: 120px;
+   object-fit: cover;
+   border-radius: 50%; /* Circular icons for a modern yet retro feel */
+   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Light shadow for depth */
+   border: 3px solid rgba(255, 255, 255, 0.5); /* Border for contrast */
 }
 
+/* Game Text */
 .game p {
-  color: white;
-  font-family: Sans-Serif;
-  font-size: 16px;
+   font-size: 16px;
+   color: #333;
+   margin-top: 10px;
+   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Light shadow for text */
+}
+
+/* Glossy Button Styling */
+button {
+   background: linear-gradient(to top left, #4e9cff, #007aff); /* Glossy gradient button */
+   color: white;
+   border-radius: 8px; /* Rounded edges for modern feel */
+   padding: 12px 24px;
+   font-size: 16px;
+   border: none;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Bold shadow for depth */
+   transition: background 0.3s, box-shadow 0.3s;
+}
+
+/* Hover Effect for Buttons */
+button:hover {
+   background: linear-gradient(to top left, #0061f2, #0054c2); /* Darker glossy effect on hover */
+   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
+}
+
+/* Game Links Styled as Buttons */
+.game a {
+   display: inline-block;
+   font-size: 14px;
+   padding: 8px 16px;
+   background-color: #4e9cff; /* Same blue as buttons for consistency */
+   color: white;
+   text-decoration: none;
+   border-radius: 8px;
+   transition: background-color 0.3s, box-shadow 0.3s;
+   margin-top: 15px;
+}
+
+/* Hover Effect for Game Links */
+.game a:hover {
+   background-color: #006bb6; /* Darker blue on hover */
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Hover effect shadow */
+   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Text shadow on hover */
+}
+
+/* Media Query for Responsiveness */
+@media (max-width: 768px) {
+   .game-row {
+      flex-direction: column;
+      align-items: center;
+   }
+
+   .game {
+      width: 160px; /* Smaller width for smaller screens */
+      margin: 10px;
+   }
+
+   h1.title {
+      font-size: 36px;
+   }
 }
