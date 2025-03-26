@@ -1,46 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Crimeville Games - Play Your Favorite Games!</title>
+  <title>Crimeville Games - The Best Games You Will Ever Find</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="header">
     <a href="index.html">
-      <img src="https://assets.onecompiler.app/42zycvts2/43cs7rhfd/Crimeville-games-3-24-2025.png" width="200px">
+      <img src="https://assets.onecompiler.app/42zycvts2/43cv4xw74/Crimveville-games-logo.png" width="200px">
     </a>
   </div>
   <h1 class="title">Crimeville Games!</h1>
-  <h2>Enjoy your game!</h2>
+  <h2>The BEST games you will ever find!</h2>
+  <img class="banner" src="https://assets.onecompiler.app/42upycgrh/43cyk6yb7/Screenshot%202025-02-27%207.14.49%20PM.png" width="100%">
 
-  <div id="game-container">
-    <iframe id="game-frame" src="" width="100%" height="600px" frameborder="0" allowfullscreen></iframe>
+  <div class="game-row">
+    <!-- First game with provided image -->
+    <a href="game.html?game=HeckBullet" class="game">
+      <img src="https://assets.onecompiler.app/42zycvts2/43cv4xw74/Screenshot%202025-03-25%2009.15.23.png" alt="Heck Bullet">
+      <p>Heck Bullet</p>
+    </a>
+    <!-- Placeholder images for other games -->
+    <a href="game.html?game=Game2" class="game">
+      <img src="https://via.placeholder.com/75" alt="Game 2">
+      <p>Game 2</p>
+    </a>
+    <a href="game.html?game=Game3" class="game">
+      <img src="https://via.placeholder.com/75" alt="Game 3">
+      <p>Game 3</p>
+    </a>
+    <a href="game.html?game=Game4" class="game">
+      <img src="https://via.placeholder.com/75" alt="Game 4">
+      <p>Game 4</p>
+    </a>
+    <a href="game.html?game=Game5" class="game">
+      <img src="https://via.placeholder.com/75" alt="Game 5">
+      <p>Game 5</p>
+    </a>
+    <a href="game.html?game=Game6" class="game">
+      <img src="https://via.placeholder.com/75" alt="Game 6">
+      <p>Game 6</p>
+    </a>
+    <a href="game.html?game=Game7" class="game">
+      <img src="https://via.placeholder.com/75" alt="Game 7">
+      <p>Game 7</p>
+    </a>
+    <a href="game.html?game=Game8" class="game">
+      <img src="https://via.placeholder.com/75" alt="Game 8">
+      <p>Game 8</p>
+    </a>
   </div>
-
-  <script>
-    // Get the game name from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const gameName = urlParams.get('game');
-
-    // Define the game URLs
-    const gameUrls = {
-      HeckBullet: "https://crimeville-games.github.io/thug-heck-bullet",
-      Game2: "https://crimeville-games.github.io/game2",
-      Game3: "https://crimeville-games.github.io/game3",
-      Game4: "https://crimeville-games.github.io/game4",
-      Game5: "https://crimeville-games.github.io/game5",
-      Game6: "https://crimeville-games.github.io/game6",
-      Game7: "https://crimeville-games.github.io/game7",
-      Game8: "https://crimeville-games.github.io/game8"
-    };
-
-    // Set the iframe source
-    const iframe = document.getElementById('game-frame');
-    if (gameUrls[gameName]) {
-      iframe.src = gameUrls[gameName];
-    } else {
-      document.getElementById('game-container').innerHTML = `<h2>Game not found!</h2>`;
-    }
-  </script>
 </body>
 </html>
