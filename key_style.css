@@ -1,0 +1,137 @@
+/* General body styles */
+body {
+  font-family: 'MS Sans Serif', Geneva, sans-serif;
+  background-color: #C0C0C0;
+  color: black;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Title styles */
+.title {
+  font-size: 2.5rem;
+  color: #000080;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px #ffffff;
+  margin-top: 50px;
+  padding: 10px;
+  background-color: #A0A0A0;
+  border: 2px solid #808080;
+  box-shadow: 4px 4px 5px #808080;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Subtitle styles */
+h2 {
+  font-size: 1.2rem;
+  color: #000080;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Game link styles */
+.game {
+  display: inline-block;
+  margin: 20px;
+  text-decoration: none;
+  font-family: 'MS Sans Serif', Geneva, sans-serif;
+  font-size: 1.1rem;
+  color: #0000FF;
+  border: 2px solid #808080;
+  background-color: #FFFFFF;
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 2px 2px 3px #808080;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect for game links */
+.game:hover {
+  background-color: #C0C0C0;
+  color: #000080;
+  box-shadow: 2px 2px 5px #808080;
+}
+
+/* Image styles */
+.game img {
+  width: 150px;
+  height: auto;
+  border-radius: 2px;
+  border: 2px solid #808080;
+  margin-top: 10px;
+  box-shadow: 2px 2px 3px #808080;
+  background-color: #FFFFFF;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* Hover effect on images */
+.game:hover img {
+  transform: rotate(2deg);
+  border-color: #0000FF;
+}
+
+/* Windows-like buttons for interaction */
+button {
+  font-family: 'MS Sans Serif', Geneva, sans-serif;
+  font-size: 1rem;
+  padding: 8px 15px;
+  border: 2px solid #808080;
+  background-color: #F0F0F0;
+  color: #000000;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 3px;
+  box-shadow: 2px 2px 4px #808080;
+  margin-top: 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #A0A0A0;
+  color: #000080;
+  box-shadow: 2px 2px 5px #808080;
+}
+
+button:active {
+  transform: translateY(2px);
+}
+
+/* Old-school popup window */
+.popup {
+  background-color: #A0A0A0;
+  border: 2px solid #808080;
+  width: 300px;
+  padding: 20px;
+  box-shadow: 4px 4px 5px #808080;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: none;
+}
+
+.popup.show {
+  display: block;
+}
+
+/* Responsive design: for smaller screens */
+@media (max-width: 600px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  .game img {
+    width: 120px;
+  }
+
+  .game {
+    font-size: 1rem;
+  }
+}
