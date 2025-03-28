@@ -23,7 +23,7 @@ body {
 /* Main Title */
 h1.title {
    font-size: 50px;
-   color: #00ff00; /* Green text color */
+   color: white; /* Green text color */
    margin: 0;
    text-shadow:
       2px 2px 0 #000,  /* Outline effect */
