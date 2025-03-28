@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple 3D First Person Game</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+        .game {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* Initially hidden */
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            border-radius: 10px;
+            color: white;
+        }
+        .game img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+        }
+        .game p {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hidden button, only shown when the player reaches 100 feet -->
+    <a href="water.html" class="game">
+        <img src="https://assets.onecompiler.app/42upycgrh/43d3e9zbz/connor-whyel-futigeraeropittsburghexperminet3.jpg" alt="apes">
+        <p>Don't you wonder what's inside?</p>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.133.0/build/three.min.js"></script>
+    <script>
+        let scene, camera, renderer;
+        let playerSpeed = 0.1;
+        let keys = { w: false, a: false, s: false, d: false };
+        let mouseX = 0;
+        let isPointerLocked = false;
+
+        // Track pillars in the scene
+        let pillars = [];
+        const pillarDistance = 20; // Distance between pillars
+        const maxPillars = 200; // Max number of pillars to keep
+        const range = 50; // Distance in each direction to spawn pillars
+
+        // Initialize everything
+        init();
+        animate();
+
+        function init() {
+            // Create the scene
+            scene = new THREE.Scene();
+
+            // Set up the camera
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 1.6, 0);  // Set camera at player height (1.6 meters)
+
+            // Set up the renderer
+            renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            // Add a gray floor (PlaneGeometry)
+            const floorGeometry = new THREE.PlaneGeometry(500, 500);
+            const floorMaterial = new THREE.MeshStandardMaterial({ color: 0x808080 });
+            const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+            floor.rotation.x = - Math.PI / 2;  // Rotate to make it horizontal
+            scene.add(floor);
+
+            // Add ambient light (soft lighting for the scene)
+            const ambientLight = new THREE.AmbientLight(0x404040, 1);  // Soft light
+            scene.add(ambientLight);
+
+            // Add a directional light to simulate sunlight
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 1);  // White light
+            directionalLight.position.set(10, 10, 10);  // Light source above and to the right
+            scene.add(directionalLight);
+
+            // Set up event listeners for keyboard and mouse
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('keydown', onKeyDown);
+            document.addEventListener('keyup', onKeyUp);
+
+            // Lock mouse pointer for better controls
+            document.body.onclick = () => {
+                if (!isPointerLocked) {
+                    document.body.requestPointerLock = document.body.requestPointerLock || document.body.mozRequestPointerLock;
+                    document.body.requestPointerLock();
+                    isPointerLocked = true;
+                }
+            };
+
+            document.addEventListener('pointerlockchange', () => {
+                isPointerLocked = document.pointerLockElement === document.body;
+            });
+
+            // Generate initial pillars
+            createInitialPillars();
+        }
+
+        // Handle keyboard input
+        function onKeyDown(event) {
+            if (event.key === 'w') keys.w = true;
+            if (event.key === 'd') keys.a = true;
+            if (event.key === 's') keys.s = true;
+            if (event.key === 'a') keys.d = true;
+        }
+
+        function onKeyUp(event) {
+            if (event.key === 'w') keys.w = false;
+            if (event.key === 'd') keys.a = false;
+            if (event.key === 's') keys.s = false;
+            if (event.key === 'a') keys.d = false;
+        }
+
+        // Update mouse movement to adjust camera (only horizontal movement)
+        function onMouseMove(event) {
+            if (isPointerLocked) {
+                // When the pointer is locked, we use the relative mouse movement
+                mouseX += event.movementX * 0.002; // Horizontal mouse movement affects rotation
+
+                // Update camera rotation only on the Y-axis (left and right)
+                camera.rotation.y = mouseX; // Left and right only, no vertical rotation
+            }
+        }
+
+        // Move player based on WASD keys
+        function movePlayer() {
+            let direction = new THREE.Vector3();
+            camera.getWorldDirection(direction);  // Get camera's world direction
+
+            if (keys.w) camera.position.addScaledVector(direction, playerSpeed);  // Move forward
+            if (keys.s) camera.position.addScaledVector(direction, -playerSpeed);  // Move backward
+
+            const right = new THREE.Vector3();
+            right.crossVectors(camera.up, direction);  // Get right direction relative to the camera
+
+            if (keys.a) camera.position.addScaledVector(right, -playerSpeed);  // Move left
+            if (keys.d) camera.position.addScaledVector(right, playerSpeed);  // Move right
+        }
+
+        // Create initial pillars (before player starts moving)
+        function createInitialPillars() {
+            for (let x = -range; x < range; x += pillarDistance) {
+                for (let z = -range; z < range; z += pillarDistance) {
+                    createPillar(x, z);
+                }
+            }
+        }
+
+        // Create a new pillar at the specified x, z position
+        function createPillar(x, z) {
+            const pillarGeometry = new THREE.CylinderGeometry(0.5, 0.5, 10, 32); // Pillars are cylinders
+            const pillarMaterial = new THREE.MeshStandardMaterial({ color: 0x0000ff });
+            const pillar = new THREE.Mesh(pillarGeometry, pillarMaterial);
+            pillar.position.set(x, 5, z);  // Position pillar at a specific X and Z location
+            scene.add(pillar);
+            pillars.push(pillar);
+        }
+
+        // Remove pillars that are behind the player and add new ones in all directions
+        function updatePillars() {
+            const playerX = camera.position.x;
+            const playerZ = camera.position.z;
+
+            // Remove pillars that are too far behind
+            while (pillars.length > 0 && Math.abs(pillars[0].position.x - playerX) > range || Math.abs(pillars[0].position.z - playerZ) > range) {
+                scene.remove(pillars.shift());
+            }
+
+            // Add new pillars in all directions around the player
+            const lastX = pillars.length > 0 ? pillars[pillars.length - 1].position.x : 0;
+            const lastZ = pillars.length > 0 ? pillars[pillars.length - 1].position.z : 0;
+
+            for (let x = playerX - range; x < playerX + range; x += pillarDistance) {
+                for (let z = playerZ - range; z < playerZ + range; z += pillarDistance) {
+                    // Ensure no duplicate pillar creation
+                    if (!pillars.some(pillar => pillar.position.x === x && pillar.position.z === z)) {
+                        createPillar(x, z);
+                    }
+                }
+            }
+
+            // Check the player's distance from the origin and show the button if they exceed 100 feet
+            const distance = Math.sqrt(camera.position.x * camera.position.x + camera.position.z * camera.position.z);
+            const button = document.querySelector('.game');
+            if (distance >= 30.48) { // 100 feet in meters
+                button.style.display = 'block';
+            }
+        }
+
+        // Update the scene continuously
+        function animate() {
+            requestAnimationFrame(animate);
+
+            movePlayer();  // Move the player
+            updatePillars();  // Update pillar positions (add/remove based on player's position)
+
+            renderer.render(scene, camera);  // Render the scene from the camera perspective
+        }
+    </script>
+</body>
+</html>
