@@ -1,0 +1,137 @@
+/* Import the Frutiger font */
+@font-face {
+  font-family: 'Frutiger';
+  src: url('frutiger.ttf');
+}
+
+/* Apply the Frutiger font and set a dark blue background */
+body {
+  font-family: 'Frutiger', Arial, sans-serif;
+  background-color: #001f3d; /* Dark blue background */
+  color: #ffffff; /* White text */
+  margin: 0;
+  padding: 0;
+  background-image: url('background.jpg'); /* Optional: Add a nature-inspired background image */
+  background-size: cover;
+  background-position: center;
+}
+
+/* Header styles */
+.header {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(0, 47, 93, 0.8); /* Semi-transparent dark blue */
+  backdrop-filter: blur(10px); /* Glassmorphism effect */
+}
+
+.header img {
+  width: 200px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Title styles */
+.title {
+  font-size: 3em;
+  text-align: center;
+  margin-top: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Subtitle styles */
+h2 {
+  font-size: 1.8em;
+  text-align: center;
+  color: #a0c4ff; /* Light blue */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Banner image styles */
+.banner {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px 0;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Game row container */
+.game-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Individual game link styles */
+.game {
+  text-align: center;
+  width: 220px;
+  background-color: rgba(0, 63, 125, 0.8); /* Semi-transparent medium blue */
+  padding: 15px;
+  border-radius: 15px;
+  text-decoration: none;
+  color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px); /* Glassmorphism effect */
+}
+
+/* Game image styles */
+.game img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* Game name styles */
+.game p {
+  margin-top: 10px;
+  font-size: 1.2em;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Hover effects for games */
+.game:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Glossy button effect */
+.game:before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  z-index: -1;
+}
+
+/* Nature-inspired icon styles */
+.game img {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Additional nature-inspired elements */
+body::before {
+  content: url('bubbles.png'); /* Optional: Add bubble images */
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -2;
+}
+
+body::after {
+  content: url('fish.png'); /* Optional: Add fish images */
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -2;
+}
